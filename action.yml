@@ -16,12 +16,12 @@ runs:
 
     - run: yarn
       shell: 'bash'
-    - run: yarn run build
+    - run: npm run build --if-present
       shell: 'bash'
-    - run: yarn run lint
+    - run: npm run lint --if-present
       shell: 'bash'
     - run: git diff --exit-code
       shell: 'bash'
-    - run: yarn run test
+    - run: npm run test --if-present
       shell: 'bash'
 
