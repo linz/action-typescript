@@ -1,5 +1,5 @@
 name: 'Yarn, Typescript & NPM'
-description: 'Build and publish typescript packages to NPM'
+description: 'Build, Lint and Test a typescript package'
 runs:
   using: "composite"
   steps:
