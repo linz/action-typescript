@@ -6,5 +6,5 @@ usage:
 
 ```
  - name: Build and test
-   uses: blacha/yarn-typescript-action@v1
+   uses: linz/action-typescript@v1
 ```
