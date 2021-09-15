@@ -1,4 +1,4 @@
-# blacha/yarn-typescript-action
+# linz/action-typescript
 
 Composite action to checkout/build/test and npm/yarn package
 
