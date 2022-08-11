@@ -1,27 +1,45 @@
-name: 'Yarn, Typescript & NPM'
-description: 'Build, Lint and Test a typescript package'
+name: "Yarn, Typescript & NPM"
+description: "Build, Lint and Test a typescript package"
+inputs:
+  registry-url:
+    description: "Registry to use NPM or github"
+    required: false
+    default: "https://registry.npmjs.org"
+  package-manager:
+    description: "Package manager to use yarn or npm"
+    required: false
+    default: "yarn"
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
       with:
-          fetch-depth: 0
+        fetch-depth: 0
 
     - name: Use Node.js 16.x
       uses: actions/setup-node@v2
       with:
         node-version: 16.x
-        registry-url: https://registry.npmjs.org
-        cache: "yarn"
+        registry-url: ${{ inputs.registry-url }}
+        cache: ${{ inputs.package-manager }}
 
-    - run: yarn install --frozen-lockfile --check-files
-      shell: 'bash'
+    - name: "Install"
+      shell: "bash"
+      run: |
+        if [ "${{ inputs.package-manager }}" == "yarn" ]; then
+          yarn install --frozen-lockfile --check-files
+        elif [ "${{ inputs.package-manager }}" == "npm" ]; then
+          npm install --ci
+        else 
+          echo "Unknown package-manager ${{ inputs.package-manager }}"
+          exit 1
+        fi
+
     - run: npm run build --if-present
-      shell: 'bash'
+      shell: "bash"
     - run: npm run lint --if-present
-      shell: 'bash'
+      shell: "bash"
     - run: git diff --exit-code
-      shell: 'bash'
+      shell: "bash"
     - run: npm run test --if-present
-      shell: 'bash'
-
+      shell: "bash"
