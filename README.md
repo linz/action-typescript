@@ -6,7 +6,7 @@ usage:
 
 ```yaml
  - name: Build and test
-   uses: linz/action-typescript@v1
+   uses: linz/action-typescript@v2
 ```
 
 Example github action, using both the composite action and reusable workflow
@@ -21,6 +21,7 @@ jobs:
   reusable-workflow:
     uses: linz/action-typescript/.github/workflows/main.yml@v1
     with:
+      node-version: "18.x"
       registry-url: "https://npm.pkg.github.com"
       package-manager: "yarn"
 
@@ -30,6 +31,7 @@ jobs:
       - name: Build and test
         uses: linz/action-typescript@v1
         with:
+          node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
           package-manager: "yarn"
 ```
