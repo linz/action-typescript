@@ -13,6 +13,11 @@ on:
         required:  false
         type: string
         default: "https://npm.pkg.github.com"
+      node-version: 
+        description: 'Which version of NodeJS to use'
+        required:  false
+        type: string
+        default: "18.x"
 
 jobs:
   build:
@@ -23,10 +28,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use Node.js 16.x (Github)
-        uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: "${{ inputs.node-version }}"
           registry-url: "${{ inputs.registry-url }}"
           cache: "${{ inputs.package-manager }}"
 
