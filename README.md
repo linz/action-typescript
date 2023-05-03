@@ -1,6 +1,6 @@
 # linz/action-typescript
 
-Composite action to checkout/build/test and npm/yarn package
+Composite action to checkout/build/test typescript with npm or yarn.
 
 usage: 
 
@@ -19,19 +19,19 @@ on:
 
 jobs:
   reusable-workflow:
-    uses: linz/action-typescript/.github/workflows/main.yml@v1
+    uses: linz/action-typescript/.github/workflows/main.yml@v2
     with:
       node-version: "18.x"
       registry-url: "https://npm.pkg.github.com"
-      package-manager: "yarn"
+      package-manager: "npm"
 
   composite-action:
     runs-on: ubuntu-latest
     steps: 
       - name: Build and test
-        uses: linz/action-typescript@v1
+        uses: linz/action-typescript@v2
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
-          package-manager: "yarn"
+          package-manager: "npm"
 ```

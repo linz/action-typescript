@@ -7,7 +7,7 @@ on:
         description: 'Package manager to use "yarn" or "npm"'
         required: false
         type: string
-        default: "yarn"
+        default: "npm"
       registry-url: 
         description: 'Which registry to publish too NPM or github'
         required:  false
