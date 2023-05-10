@@ -6,7 +6,7 @@ usage:
 
 ```yaml
  - name: Build and test
-   uses: linz/action-typescript@v2
+   uses: linz/action-typescript@v3
 ```
 
 Example github action, using both the composite action and reusable workflow
@@ -19,7 +19,7 @@ on:
 
 jobs:
   reusable-workflow:
-    uses: linz/action-typescript/.github/workflows/main.yml@v2
+    uses: linz/action-typescript/.github/workflows/main.yml@v3
     with:
       node-version: "18.x"
       registry-url: "https://npm.pkg.github.com"
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Build and test
-        uses: linz/action-typescript@v2
+        uses: linz/action-typescript@v3
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
