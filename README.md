@@ -5,8 +5,16 @@ Composite action to checkout/build/test typescript with npm or yarn.
 usage: 
 
 ```yaml
- - name: Build and test
-   uses: linz/action-typescript@v3
+name: push
+
+on: 
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: linz/action-typescript@v3
 ```
 
 Example github action, using both the composite action and reusable workflow
@@ -21,7 +29,7 @@ jobs:
   reusable-workflow:
     uses: linz/action-typescript/.github/workflows/main.yml@v3
     with:
-      node-version: "18.x"
+      node-version: "20.x"
       registry-url: "https://npm.pkg.github.com"
       package-manager: "npm"
 
@@ -31,7 +39,7 @@ jobs:
       - name: Build and test
         uses: linz/action-typescript@v3
         with:
-          node-version: "18.x"
+          node-version: "20.x"
           registry-url: "https://npm.pkg.github.com"
           package-manager: "npm"
 ```
