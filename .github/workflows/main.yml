@@ -41,7 +41,7 @@ jobs:
           if [ "${{ inputs.package-manager }}" == "yarn" ]; then
             yarn install --frozen-lockfile --check-files
           elif [ "${{ inputs.package-manager }}" == "npm" ]; then
-            npm install --ci
+            npm ci
           else 
             echo "Unknown package-manager ${{ inputs.package-manager }}"
             exit 1
