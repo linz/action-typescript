@@ -17,7 +17,7 @@ on:
         description: 'Which version of NodeJS to use'
         required:  false
         type: string
-        default: "20.x"
+        default: "24.x"
 
 jobs:
   build:
