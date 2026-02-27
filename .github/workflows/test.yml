@@ -1,0 +1,38 @@
+name: "Test Action"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test Default (should be 24)
+        uses: ./
+      - run: node --version | grep "v24"
+
+  test-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test Version 22
+        uses: ./
+        with:
+          node-version: "22"
+      - run: node --version | grep "v22"
+
+  test-version-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Create .node-version
+        run: echo "20" > .node-version
+      - name: Test Version File
+        uses: ./
+        with:
+          node-version-file: ".node-version"
+      - run: node --version | grep "v20"
