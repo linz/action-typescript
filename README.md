@@ -2,12 +2,12 @@
 
 Composite action to checkout/build/test typescript with npm or yarn.
 
-usage: 
+usage:
 
 ```yaml
 name: push
 
-on: 
+on:
   push:
 
 jobs:
@@ -22,7 +22,7 @@ Example github action, using both the composite action and reusable workflow
 ```yaml
 name: push
 
-on: 
+on:
   push:
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
 
   composite-action:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Build and test
         uses: linz/action-typescript@v3
         with:
