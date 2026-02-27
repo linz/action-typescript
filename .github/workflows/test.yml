@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Create dummy package files
+        run: |
+          echo '{"name":"test"}' > package.json
+          echo '{"name":"test", "lockfileVersion": 3}' > package-lock.json
       - name: Test Default (should be 24)
         uses: ./
       - run: node --version | grep "v24"
@@ -19,6 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Create dummy package files
+        run: |
+          echo '{"name":"test"}' > package.json
+          echo '{"name":"test", "lockfileVersion": 3}' > package-lock.json
       - name: Test Version 22
         uses: ./
         with:
@@ -29,6 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Create dummy package files
+        run: |
+          echo '{"name":"test"}' > package.json
+          echo '{"name":"test", "lockfileVersion": 3}' > package-lock.json
       - name: Create .node-version
         run: echo "20" > .node-version
       - name: Test Version File
