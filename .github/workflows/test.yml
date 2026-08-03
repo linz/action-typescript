@@ -1,0 +1,45 @@
+name: "Test Action"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm init -y && npm install --package-lock-only
+      - name: Test Default (should be 24)
+        uses: ./
+        with:
+          clean: false
+      - run: node --version | grep "v24"
+
+  test-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm init -y && npm install --package-lock-only
+      - name: Test Version 22
+        uses: ./
+        with:
+          node-version: "22"
+          clean: false
+      - run: node --version | grep "v22"
+
+  test-version-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: echo "20" > .node-version
+      - run: npm init -y && npm install --package-lock-only
+      - name: Test Version File
+        uses: ./
+        with:
+          node-version-file: ".node-version"
+          clean: false
+      - run: node --version | grep "v20"
+
