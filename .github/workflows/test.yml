@@ -14,6 +14,8 @@ jobs:
       - run: npm init -y && npm install --package-lock-only
       - name: Test Default (should be 24)
         uses: ./
+        with:
+          clean: false
       - run: node --version | grep "v24"
 
   test-version:
@@ -25,6 +27,7 @@ jobs:
         uses: ./
         with:
           node-version: "22"
+          clean: false
       - run: node --version | grep "v22"
 
   test-version-file:
@@ -37,5 +40,6 @@ jobs:
         uses: ./
         with:
           node-version-file: ".node-version"
+          clean: false
       - run: node --version | grep "v20"
 

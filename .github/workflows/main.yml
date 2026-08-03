@@ -21,6 +21,16 @@ on:
         description: "File to read NodeJS version from"
         required: false
         type: string
+      fetch-depth:
+        description: "Number of commits to fetch. 0 indicates all history for all branches and tags."
+        required: false
+        type: string
+        default: "0"
+      clean:
+        description: "Whether to execute git clean -ffdx && git reset --hard HEAD before fetching"
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -29,7 +39,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          fetch-depth: ${{ inputs.fetch-depth }}
+          clean: ${{ inputs.clean }}
 
       - name: Use Node.js
         uses: actions/setup-node@v5
