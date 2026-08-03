@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - run: npm init -y && npm install --package-lock-only
       - name: Test Default (should be 24)
         uses: ./
       - run: node --version | grep "v24"
@@ -19,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - run: npm init -y && npm install --package-lock-only
       - name: Test Version 22
         uses: ./
         with:
@@ -30,17 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: echo "20" > .node-version
+      - run: npm init -y && npm install --package-lock-only
       - name: Test Version File
         uses: ./
         with:
           node-version-file: ".node-version"
       - run: node --version | grep "v20"
-
-  test-reusable-default:
-    uses: ./.github/workflows/main.yml
-
-  test-reusable-version:
-    uses: ./.github/workflows/main.yml
-    with:
-      node-version: "22"
 

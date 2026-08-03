@@ -33,10 +33,6 @@ runs:
     - name: "Install"
       shell: "bash"
       run: |
-        if [ ! -f "package.json" ]; then
-          echo "No package.json found, skipping install."
-          exit 0
-        fi
         if [ "${{ inputs.package-manager }}" == "yarn" ]; then
           yarn install --frozen-lockfile --check-files
         elif [ "${{ inputs.package-manager }}" == "npm" ]; then
