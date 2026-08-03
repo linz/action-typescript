@@ -34,3 +34,17 @@ jobs:
         with:
           node-version-file: ".node-version"
       - run: node --version | grep "v20"
+
+  test-reusable-default:
+    uses: ./.github/workflows/main.yml
+
+  test-reusable-version:
+    uses: ./.github/workflows/main.yml
+    with:
+      node-version: "22"
+
+  test-reusable-version-file:
+    uses: ./.github/workflows/main.yml
+    with:
+      node-version-file: ".node-version"
+

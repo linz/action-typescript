@@ -25,7 +25,7 @@ runs:
     - name: Use Node.js
       uses: actions/setup-node@v5
       with:
-        node-version: ${{ (inputs.node-version == '' && inputs.node-version-file == '') && '24' || inputs.node-version }}
+        node-version: ${{ (inputs.node-version == '' && inputs.node-version-file == '') && '24.x' || inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
         registry-url: ${{ inputs.registry-url }}
         cache: ${{ inputs.package-manager }}
